@@ -1,0 +1,6 @@
+{
+    "bot_key": "Never Gonna Give",
+    "channel_id": "You Up",
+    "limit_between_rests": 10,
+    "rest_length_seconds": 5
+}

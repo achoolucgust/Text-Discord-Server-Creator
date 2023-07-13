@@ -1,0 +1,31 @@
+== DATA
+NAME=Example Server
+DESC=An Example Server.
+
+== DECORATION
+CATEGORY_START=<- 
+CATEGORY_END= ->
+CHANNEL_START=∙│
+LAST_CHANNEL_START=∙└
+
+== CHANNELS
+# Info
+- Info
+- Welcome
+- Polls
+- Announcements
+
+# Other
++ [0] + AFK
+
+# Voice
++ [12] + Big VC
++ [6] + Squad
++ [4] + Party
++ [2] + Private
+
+# Talk
+- Media
+- General
+- Logs
+- Bot Commands
