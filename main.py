@@ -132,7 +132,7 @@ async def on_ready():
     print("Waiting...")
     sleep(5)
     print("Fetching server...")
-    actualsrv: nextcord.Guild = await bot.fetch_guild(settings["channel_id"])
+    actualsrv: nextcord.Guild = await bot.fetch_guild(settings["server_id"])
     print("Building server...")
     count = 0
     for category_name in created_srv.channels.keys():
