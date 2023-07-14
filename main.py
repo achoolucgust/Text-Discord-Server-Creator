@@ -132,7 +132,7 @@ async def on_ready():
     print("Waiting...")
     sleep(5)
     print("Fetching server...")
-    actualsrv: nextcord.Guild = await bot.fetch_guild(settings.channel_id)
+    actualsrv: nextcord.Guild = await bot.fetch_guild(settings["channel_id"])
     print("Building server...")
     count = 0
     for category_name in created_srv.channels.keys():
@@ -152,8 +152,8 @@ async def on_ready():
                 channel: nextcord.TextChannel = await category.create_text_channel(name)
 
             print(f"{category.id} ~ {channel.id}\n{category.name} ~ {channel.name}\n\n")
-            if count%settings.limit_between_rests == 0:
-                sleep(settings.rest_length_seconds)
+            if count%settings["limit_between_rests"] == 0:
+                sleep(settings["rest_length_seconds"])
     print("Done! Feel free to CTRL+C this.")
 
-bot.run(settings.bot_key) 
+bot.run(settings["bot_key"])
