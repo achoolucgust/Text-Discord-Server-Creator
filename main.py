@@ -1,13 +1,27 @@
-import msvcrt
-import nextcord
-from nextcord.ext import commands
-import os
-import json
-from time import sleep
-from colorama import Fore as color_fg
-from colorama import Style as color_style
-from colorama import Back as color_bg
-from colorama import init as color_init
+try:
+    import msvcrt
+    import os
+except:
+    print("You need to be on windows.")
+    raise Exception("You need to be on windows.")
+try:
+    import nextcord
+    from nextcord.ext import commands
+    import json
+    from time import sleep
+    from colorama import Fore as color_fg
+    from colorama import Style as color_style
+    from colorama import Back as color_bg
+    from colorama import init as color_init
+except:
+    print("You do not have the modules installed. Do you want to automatically install them with pip?\n[E] to accept, press any other button to cancel.\n")
+    if str(msvcrt.getch())[2:-1].lower() == "e":
+        os.system("pip install nextcord==2.5.0")
+        os.system("pip install colorama==0.4.5")
+        os.system("pip install json")
+    else:
+        print("Exiting.")
+        os.exit(1)
 
 intents = nextcord.Intents.default()
 intents.message_content = True
@@ -109,11 +123,12 @@ def select_server(e):
     print("Select a server.\nPress [W] or [S] to scroll\nPress [E] to select:")
     for servfile in servers:
         serv = servfile.split(".")[0]
+        servname = interpret_file("./Servers/" + servfile).name
         if servers[current_server] == servfile:
-            print(color_fg.CYAN + serv + " <")
+            print(color_fg.CYAN + servname + " <")
         else:
-            print(color_fg.BLUE + serv)
-    char = str(msvcrt.getch())[2:-1]
+            print(color_fg.BLUE + servname)
+    char = str(msvcrt.getch())[2:-1].lower()
     if char == "s":
         select_server(1)
     elif char == "w":
