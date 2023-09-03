@@ -162,7 +162,7 @@ async def on_ready():
 
             if channel_name[1] == "vc":
                 channel: nextcord.VoiceChannel = await category.create_voice_channel(name)
-                channel.user_limit = channel_name[2]
+                channel.edit(user_limit=int(channel_name[2]))
             elif channel_name[1] == "text":
                 channel: nextcord.TextChannel = await category.create_text_channel(name)
 
@@ -170,5 +170,6 @@ async def on_ready():
             if count%settings["limit_between_rests"] == 0:
                 sleep(settings["rest_length_seconds"])
     print("Done! Feel free to CTRL+C this.")
+    bot.close()
 
 bot.run(settings["bot_key"])

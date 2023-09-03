@@ -2,7 +2,7 @@
 Create discord servers out of text files. Purely python
 
 ## Plan to add
-User limit for VCs.
+- *Nothing currently! Something you want? Suggest it as an issue maybe.*
 
 ## Requirements & Depedencies
 Only requirement is Python 3, pip, and a Windows system.
@@ -13,9 +13,9 @@ Depedencies:
 - colorama
 
 Do these commands to download all of them:
-- `pip install nextcord`
+- `pip install nextcord==2.5.0`
 - `pip install json`
-- `pip install colorama`
+- `pip install colorama==0.4.5`
 
 ## How to run
 1. `git clone` this project
@@ -51,6 +51,7 @@ For the example above, if you put **"Info"** as one of the category names, it wo
 - Welcome
 - General
 + [6] + VC 1
++ [0] + VC 2
 ```
 The `#` means a category, `-` means a text channel, and then the `+` means a voice channel.
 
@@ -58,4 +59,4 @@ In the example above, it makes 4 channels in the category **"Main"**.
 - Info (Text channel)
 - Welcome (Text channel)
 - General (Text channel)
-- VC 1 (Voice Channel with 6 member user limit *\[wip\]*)
+- VC 1 (Voice Channel with 6 member user limit)
