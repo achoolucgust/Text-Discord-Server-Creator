@@ -70,6 +70,6 @@ Those will be created like this:
 - ∙│Info
 - ∙│Welcome
 - ∙└General
-- **<- Info ->**
+- **<- Voice Channels ->**
 - ∙│VC 1
 - ∙└VC 2
