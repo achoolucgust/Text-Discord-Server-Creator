@@ -60,3 +60,4 @@ In the example above, it makes 4 channels in the category **"Main"**.
 - Welcome (Text channel)
 - General (Text channel)
 - VC 1 (Voice Channel with 6 member user limit)
+- VC 2 (Voice Channel without a member user limit)
