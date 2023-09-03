@@ -50,14 +50,26 @@ For the example above, if you put **"Info"** as one of the category names, it wo
 - Info
 - Welcome
 - General
+# Voice Channels
 + [6] + VC 1
 + [0] + VC 2
 ```
 The `#` means a category, `-` means a text channel, and then the `+` means a voice channel.
 
-In the example above, it makes 4 channels in the category **"Main"**.
+In the example above, it makes 3 channels in the category **"Main"**.
 - Info (Text channel)
 - Welcome (Text channel)
 - General (Text channel)
+
+Then has 2 channels in the category **"Voice Channels"**.
 - VC 1 (Voice Channel with 6 member user limit)
 - VC 2 (Voice Channel without a member user limit)
+
+Those will be created like this:
+- **<- Main ->**
+- ∙│Info
+- ∙│Welcome
+- ∙└General
+- **<- Info ->**
+- ∙│VC 1
+- ∙└VC 2
