@@ -14,7 +14,9 @@ try:
     from colorama import Back as color_bg
     from colorama import init as color_init
 except:
-    print("You do not have the modules installed. Do you want to automatically install them with pip?\n[E] to accept, press any other button to cancel.\n")
+    print(
+        "You do not have the modules installed. Do you want to automatically install them with pip?\n[E] to accept, press any other button to cancel.\n"
+    )
     if str(msvcrt.getch())[2:-1].lower() == "e":
         os.system("pip install nextcord==2.5.0")
         os.system("pip install colorama==0.4.5")
@@ -27,9 +29,7 @@ intents = nextcord.Intents.default()
 intents.message_content = True
 intents.members = True
 bot = commands.Bot(
-    activity=nextcord.Activity(
-        name="grass grow", type=nextcord.ActivityType.watching
-    ),
+    activity=nextcord.Activity(name="grass grow", type=nextcord.ActivityType.watching),
     intents=intents,
 )
 
@@ -45,7 +45,8 @@ for i in os.listdir("./Servers/"):
 
 current_server = 0
 
-class dcsrv():
+
+class dcsrv:
     name = "Default"
     desc = "Default"
 
@@ -56,21 +57,21 @@ class dcsrv():
     last_channel_start = ""
 
     channels = {
-    #    "Info": [
-    #        ["Rules","text"],
-    #        ["Random","vc",0]
-    #        ["Limited","vc",6]
-    #    ]
+        #    "Info": [
+        #        ["Rules","text"],
+        #        ["Random","vc",0]
+        #        ["Limited","vc",6]
+        #    ]
     }
 
 
 def interpret_file(filename):
-    with open(filename,"r",encoding="utf-8") as f:
+    with open(filename, "r", encoding="utf-8") as f:
         file = f.read()
     whereami = ""
     category = ""
     srv = dcsrv()
-    
+
     for line in file.split("\n"):
         # Category
         if line.startswith("=="):
@@ -105,20 +106,26 @@ def interpret_file(filename):
                 if not category in list(srv.channels.keys()):
                     srv.channels[category] = []
                 if line[0] == "-":
-                    srv.channels[category].append([(line + " ")[2:-1],"text"])
+                    srv.channels[category].append([(line + " ")[2:-1], "text"])
                 if line[0] == "+":
-                    the = line.split("+") # I apologize to the person reading over my code, i have no idea what to name any of my variables.
-                    #srv.channels[category].append([(line + " ")[2:-1],"vc"])
-                    srv.channels[category].append([(the[2] + " ")[1:-1],"vc",int(the[1][2:-2])])
+                    the = line.split(
+                        "+"
+                    )  # I apologize to the person reading over my code, i have no idea what to name any of my variables.
+                    # srv.channels[category].append([(line + " ")[2:-1],"vc"])
+                    srv.channels[category].append(
+                        [(the[2] + " ")[1:-1], "vc", int(the[1][2:-2])]
+                    )
     return srv
 
+
 created_srv = None
+
 
 def select_server(e):
     global created_srv
     os.system("cls")
     global current_server
-    if len(servers) > current_server+e and current_server+e >= 0:
+    if len(servers) > current_server + e and current_server + e >= 0:
         current_server += e
     print("Select a server.\nPress [W] or [S] to scroll\nPress [E] to select:")
     for servfile in servers:
@@ -137,10 +144,12 @@ def select_server(e):
         print("Processing...")
         created_srv = interpret_file("./Servers/" + servers[current_server])
     else:
-        select_server(0)    
+        select_server(0)
+
 
 select_server(0)
 print("Starting bot...")
+
 
 @bot.event
 async def on_ready():
@@ -152,7 +161,9 @@ async def on_ready():
     count = 0
     for category_name in created_srv.channels.keys():
         channels = created_srv.channels[category_name]
-        category: nextcord.CategoryChannel = await actualsrv.create_category(created_srv.category_start + category_name + created_srv.category_end)
+        category: nextcord.CategoryChannel = await actualsrv.create_category(
+            created_srv.category_start + category_name + created_srv.category_end
+        )
         for channel_name in channels:
             count += 1
 
@@ -161,15 +172,18 @@ async def on_ready():
                 name = created_srv.last_channel_start + channel_name[0]
 
             if channel_name[1] == "vc":
-                channel: nextcord.VoiceChannel = await category.create_voice_channel(name)
+                channel: nextcord.VoiceChannel = await category.create_voice_channel(
+                    name
+                )
                 channel.edit(user_limit=int(channel_name[2]))
             elif channel_name[1] == "text":
                 channel: nextcord.TextChannel = await category.create_text_channel(name)
 
             print(f"{category.id} ~ {channel.id}\n{category.name} ~ {channel.name}\n\n")
-            if count%settings["limit_between_rests"] == 0:
+            if count % settings["limit_between_rests"] == 0:
                 sleep(settings["rest_length_seconds"])
     print("Done! Feel free to CTRL+C this.")
     bot.close()
+
 
 bot.run(settings["bot_key"])
